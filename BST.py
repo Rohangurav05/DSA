@@ -28,27 +28,28 @@ class BST:
                     else:
                         temp = temp.right
 
-    def del_node(self, rt, val):
-        if rt is None:
-            return rt
+    def del_node(self, root, val):
+        if root is None:
+            return root
 
-        if val < rt.data:
-            rt.left = self.del_node(rt.left, val)
-        elif val > rt.data:
-            rt.right = self.del_node(rt.right, val)
+        if val < root.data:
+            root.left = self.del_node(root.left, val)
+        elif val > root.data:
+            root.right = self.del_node(root.right, val)
         else:
-            if rt.left is None:
-                return rt.right
+            if root.left is None:
+                return root.right
 
-            if rt.right is None:
-                return rt.left
+            if root.right is None:
+                return root.left
 
-            succ = self.get_successor(rt)
-            rt.data = succ.data
-            rt.right = self.del_node(rt.right, succ.data)
+            succ = self.get_successor(root)
+            root.data = succ.data
+            root.right = self.del_node(root.right, succ.data)
 
-        return rt
+        return root
 
+    
     def get_successor(self, temp):
         temp = temp.right
         while temp is not None and temp.left is not None:
